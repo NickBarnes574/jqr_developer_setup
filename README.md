@@ -16,8 +16,6 @@
 7. [Troubleshooting](#troubleshooting)
 8. [OPTIONAL: Version Checks](#optional-version-checks)
 
-These links should be placed at the top of your README document to serve as a table of contents. When clicked, they will take the reader directly to the respective section in the document. Remember, for these links to work correctly, the headings in your README must exactly match the text after the `#` in the links (including capitalization and spacing).
-
 ## Overview
 
 This script is designed to automate the setup of a developer environment on Ubuntu 20.04. It installs essential development tools, software packages, and Visual Studio Code (VS Code) extensions necessary for working on the CSD-T JQR project. The script is ideal for developers who want a quick and efficient way to set up their working environment on a new Ubuntu installation.
