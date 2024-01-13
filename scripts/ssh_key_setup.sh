@@ -1,3 +1,5 @@
+#! /bin/bash
+
 source src/utilities.sh
 
 setup_ssh_keys()
@@ -22,3 +24,5 @@ setup_ssh_keys()
         fi
     fi
 }
+
+setup_ssh_keys

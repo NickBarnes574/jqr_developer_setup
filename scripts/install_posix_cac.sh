@@ -1,6 +1,27 @@
+#! /bin/bash
+
+source src/utilities.sh
+
 main()
 {
-    get_posix_cac
+    install_posix_cac
+}
+
+install_posix_cac()
+{
+    option=''
+
+    print_style "\n[POSIX CAC]-----------------------------------\n" "header"
+
+    while [ "$option" != "y" ] && [ "$option" != "n" ]
+    do
+        print_style "Do you want to install CAC credentials? [y/n]\n" "info"
+        read -r option
+    done
+    
+    if [ "$option" = "y" ]; then
+        get_posix_cac
+    fi
 }
 
 get_posix_cac()

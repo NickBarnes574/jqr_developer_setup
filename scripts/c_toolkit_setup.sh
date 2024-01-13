@@ -1,12 +1,10 @@
 #! /bin/bash
 
-set -e # used to exit the script immediately if any errors occur
-trap "catch $? $LINENO" EXIT
-
 source src/utilities.sh
 source src/vscode_config.sh
-source src/git_config.sh
-source src/ssh_key_setup.sh
+
+set -e # used to exit the script immediately if any errors occur
+trap "catch $? $LINENO" EXIT
 
 catch()
 {
@@ -44,7 +42,7 @@ The script will install the following programs:\n\n" "info"
     4. curl:................Command-line tool used to transfer data
     5. pip:.................Package installer for Python
     6. pylint:..............Static code analyzer for Python 2 and 3
-    7. clang-12:............Compiler for C and C++ programming languages
+    7. clang-14:............Compiler for C and C++ programming languages
     8. clang-format:........Code Formatting tool for C/C++
     9. clang-tidy:..........Static analyzer tool for C/C++
     10. cunit:..............Unit testing framework for C
@@ -64,7 +62,7 @@ The script will install the following programs:\n\n" "info"
         echo "Exiting..."
         exit 0
     fi
-
+    
     # Perform initial setup
     sudo apt update && sudo apt dist-upgrade -y
 
@@ -85,18 +83,6 @@ The script will install the following programs:\n\n" "info"
     install_git
 
     clear
-
-    # Verify everything was installed correctly
-    chmod +x ./run_version_check.sh
-    ./run_version_check.sh
-
-    # optional configurations/installations
-    set_up_git
-    install_posix_cac
-    setup_ssh_keys
-
-    # Setup aliases
-    set_aliases
 }
 
 #---------------------------------------------------------------
@@ -159,9 +145,9 @@ install_pylint()
 #---------------------------------------------------------------
 install_clang_suite()
 {
-    install_package_if_not_present "clang-12" "LLVM-based C/C++ compiler" "Clang"
-    install_package_if_not_present "clang-format" "Code Formatting tool for C/C++" "Clang Format"
-    install_package_if_not_present "clang-tidy" "Static analyzer tool for C/C++" "Clang Tidy"
+    install_package_if_not_present "clang-14" "LLVM-based C/C++ compiler" "Clang"
+    install_package_if_not_present "clang-format-14" "Code Formatting tool for C/C++" "Clang Format"
+    install_package_if_not_present "clang-tidy-14" "Static analyzer tool for C/C++" "Clang Tidy"
 }
 
 #---------------------------------------------------------------
@@ -190,7 +176,7 @@ install_valgrind()
 #---------------------------------------------------------------
 install_address_sanitizer()
 {
-    install_package_if_not_present "libasan5" "Memory error detector for C/C++" "Address Sanitizer"
+    install_package_if_not_present "libasan6" "Memory error detector for C/C++" "Address Sanitizer"
 }
 
 #---------------------------------------------------------------
@@ -260,24 +246,6 @@ install_vscode_extensions()
 
     else
         print_style "VS Code is not installed. Cannot install VS Code extensions!\n" "danger"
-    fi
-}
-
-install_posix_cac()
-{
-    option=''
-
-    print_style "\n[POSIX CAC]-----------------------------------\n" "header"
-
-    while [ "$option" != "y" ] && [ "$option" != "n" ]
-    do
-        print_style "Do you want to install CAC credentials? [y/n]\n" "info"
-        read -r option
-    done
-    
-    if [ "$option" = "y" ]; then
-        chmod +x ./scripts/install_posix_cac.sh
-        ./scripts/install_posix_cac.sh
     fi
 }
 
