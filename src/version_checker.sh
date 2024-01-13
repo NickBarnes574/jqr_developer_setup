@@ -131,67 +131,67 @@ check_build_essential()
 
 check_make()
 {
-    check_package_version "make" "make --version" "${1:-"4.2.1"}" "ATLEAST" "(?<=GNU Make )\d+\.\d+(\.\d+)?"
+    check_package_version "make" "make --version" "${1:-"4.3"}" "ATLEAST" "(?<=GNU Make )\d+\.\d+(\.\d+)?"
 }
 
 check_cmake()
 {
-    check_package_version "cmake" "cmake --version" "${1:-"3.16.3"}" "EXACTLY" "(?<=cmake version )\d+\.\d+(\.\d+)?"
+    check_package_version "cmake" "cmake --version" "${1:-"3.22.1"}" "ATLEAST" "(?<=cmake version )\d+\.\d+(\.\d+)?"
 }
 
 check_valgrind()
 {
-    check_package_version "valgrind" "valgrind --version" "${1:-"3.15.0"}" "ATLEAST" "(?<=valgrind-)\d+\.\d+(\.\d+)?"
+    check_package_version "valgrind" "valgrind --version" "${1:-"3.18.0"}" "ATLEAST" "(?<=valgrind-)\d+\.\d+(\.\d+)?"
 }
 
 check_address_sanitizer()
 {
-    check_package_version "libasan5" "dpkg -l libasan5" "${1:-"9.4.0"}" "ATLEAST" "(\d+\.\d+\.\d+)(?=-)"
+    check_package_version "libasan6" "dpkg -l libasan6" "${1:-"11.4.0"}" "ATLEAST" "(\d+\.\d+\.\d+)(?=-)"
 }
 
 check_cppcheck()
 {
-    check_package_version "cppcheck" "cppcheck --version" "${1:-"1.90"}" "ATLEAST" "(?<=Cppcheck )\d+\.\d+\d+"
+    check_package_version "cppcheck" "cppcheck --version" "${1:-"2.7"}" "ATLEAST" "(?<=Cppcheck )\d+\.\d+(\.\d+)?"
 }
 
 check_i3()
 {
-    check_package_version "i3" "i3 --version" "${1:-"4.17.1"}" "ATLEAST" "(?<=i3 version )\d+\.\d+\d+\.\d+"
+    check_package_version "i3" "i3 --version" "${1:-"4.20.1"}" "ATLEAST" "(?<=i3 version )\d+\.\d+\d+\.\d+"
 }
 
 check_python()
 {
-    check_package_version "python3" "python3 --version" "${1:-"3.8.10"}" "EXACTLY" "(?<=Python )\d+\.\d+(\.\d+)?"
+    check_package_version "python3" "python3 --version" "${1:-"3.10.12"}" "EXACTLY" "(?<=Python )\d+\.\d+(\.\d+)?"
 }
 
 check_pylint()
 {
-    check_package_version "pylint" "pylint --version" "${1:-"2.4.4"}" "ATLEAST" "(?<=pylint )\d+\.\d+(\.\d+)?"
+    check_package_version "pylint" "pylint --version" "${1:-"2.12.2"}" "ATLEAST" "(?<=pylint )\d+\.\d+(\.\d+)?"
 }
 
 check_pip()
 {
-    check_package_version "python3-pip" "pip --version" "${1:-"20.0.2"}" "ATLEAST" "(?<=pip )\d+\.\d+(\.\d+)?"
+    check_package_version "python3-pip" "pip --version" "${1:-"22.0.2"}" "ATLEAST" "(?<=pip )\d+\.\d+(\.\d+)?"
 }
 
 check_curl()
 {
-    check_package_version "curl" "curl --version" "${1:-"7.68.0"}" "ATLEAST" "(?<=curl )\d+\.\d+(\.\d+)?"
+    check_package_version "curl" "curl --version" "${1:-"7.81.0"}" "ATLEAST" "(?<=curl )\d+\.\d+(\.\d+)?"
 }
 
 check_clang()
 {
-    check_package_version "clang-12" "clang-12 --version" "${1:-"12.0.0"}" "EXACTLY" "(?<=clang version )\d+\.\d+(\.\d+)?"
+    check_package_version "clang-14" "clang-14 --version" "${1:-"14.0.0"}" "EXACTLY" "(?<=clang version )\d+\.\d+(\.\d+)?"
 }
 
 check_clang_format()
 {
-    check_package_version "clang-format" "clang-format --version" "${1:-"10.0.0"}" "ATLEAST" "(?<=clang-format version )\d+\.\d+(\.\d+)?"
+    check_package_version "clang-format-14" "clang-format-14 --version" "${1:-"14.0.0"}" "ATLEAST" "(?<=clang-format version )\d+\.\d+(\.\d+)?"
 }
 
 check_clang_tidy()
 {
-    check_package_version "clang-tidy" "clang-tidy --version" "${1:-"10.0.0"}" "ATLEAST" "(?<=version )\d+\.\d+(\.\d+)?"
+    check_package_version "clang-tidy-14" "clang-tidy-14 --version" "${1:-"14.0.0"}" "ATLEAST" "(?<=version )\d+\.\d+(\.\d+)?"
 }
 
 check_libcunit1()
@@ -211,12 +211,12 @@ check_libcunit1_dev()
 
 check_vscode()
 {
-    check_snap_version "code" "code --version" "${1:-"1.77.1"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
+    check_snap_version "code" "code --version" "${1:-"1.85.1"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
 }
 
 check_git()
 {
-    check_package_version "git" "git --version" "${1:-"2.25.1"}" "ATLEAST" "(?<=git version )\d+\.\d+\.\d+"
+    check_package_version "git" "git --version" "${1:-"2.34.1"}" "ATLEAST" "(?<=git version )\d+\.\d+\.\d+"
 }
 
 checks=(

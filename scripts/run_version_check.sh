@@ -1,7 +1,7 @@
 #! /bin/bash
 
-source ../src/utilities.sh
-source ../src/version_checker.sh
+source ./src/utilities.sh
+source ./src/version_checker.sh
 
 extensions=(
     "ms-vscode.cpptools-extension-pack:C/C++ Extension Pack"
@@ -49,6 +49,7 @@ version_check()
     print_style "-----------------------------------------------------------------------\n" "header"
     index=0
 
+    # NOTE: `checks` is a list stored in `version_checker.sh`
     for check in "${checks[@]}"
     do
         # Extract function call
