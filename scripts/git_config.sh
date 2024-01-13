@@ -1,6 +1,8 @@
+#! /bin/bash
+
 source src/utilities.sh
 
-set_up_git()
+setup_git()
 {
     configure=''
     print_style "\n[CONFIGURE GIT]-------------------------------\n" "header"
@@ -79,3 +81,5 @@ configure_git()
         fi
     fi
 }
+
+setup_git
