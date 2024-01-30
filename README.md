@@ -73,6 +73,8 @@ After installation, the script may offer additional optional configurations such
 
 After all installations are completed, the system will run a version check to verify that all packages and extenions were installed correctly
 
+![version_checks](/images/version_checks.gif)
+
 ## Packages and Extensions Installed
 
 The script installs the following:
@@ -112,5 +114,3 @@ chmod +x run_version_check.sh
 
 ./run_version_check.sh
 ```
-
-![version_checks](/images/version_checks.gif)
