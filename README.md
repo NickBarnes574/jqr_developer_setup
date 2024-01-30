@@ -59,7 +59,7 @@ Execute the script:
 
 The script will display a list of software to be installed and ask for confirmation before proceeding. Press `y` to continue or `n` to exit.
 
-![intro](/images/intro.png)
+![intro](/images/22.04_setup.png)
 
 ### 5. Monitor the Installation
 
@@ -72,7 +72,6 @@ After installation, the script may offer additional optional configurations such
 ### 7. Version Checks
 
 After all installations are completed, the system will run a version check to verify that all packages and extenions were installed correctly
-
 
 ## Packages and Extensions Installed
 
@@ -99,6 +98,10 @@ If you encounter errors:
 - Check if Ubuntu 22.04 is up-to-date.
 
 For specific errors, refer to the console output. Most issues will be related to package availability or network problems.
+
+> NOTE: If version checks fail, ensure that you are running the installation on 22.04 and not 20.04.
+
+![fail](/images/fail.png)
 
 ## OPTIONAL: Version Checks
 If desired, you can run version checks separately.
