@@ -37,14 +37,14 @@ This script is designed to automate the setup of a developer environment on Ubun
 
 ### 1. Download the Script
 
-Clone the repository or download the script files to your local machine. Ensure that the script (`run_setup.sh`) and its associated directories (`src`, `scripts`) are in the same directory.
+Clone the repository or download the script files to your local machine. Ensure that the script (`setup.sh`) and its associated directories (`src`, `scripts`) are in the same directory.
 
 ### 2. Make the Script Executable
 
 Before running the script, make sure it is executable:
 
 ```bash
-chmod +x run_setup.sh
+chmod +x setup.sh
 ```
 
 ### 3. Run the Script
@@ -52,7 +52,7 @@ chmod +x run_setup.sh
 Execute the script:
 >NOTE: Avoid running with sudo priveleges, as it can interfere with the setup process.
 ```bash
-./run_setup.sh
+./setup.sh
 ```
 
 ### 4. Follow the Prompts
