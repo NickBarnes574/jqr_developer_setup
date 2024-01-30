@@ -31,7 +31,7 @@ base_install()
     print_style "\n[NOTICE]:\n" "warning"
     print_style "\
 This script installs the necessary programs and extensions required to complete
-the CSD-T JQR project requirements on a Linux Ubuntu 20.04 system.
+the CSD-T JQR project requirements on a Linux Ubuntu 22.04 system.
 
 The script will install the following programs:\n\n" "info"
     print_style "\
