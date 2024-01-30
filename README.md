@@ -29,7 +29,7 @@ This script is designed to automate the setup of a developer environment on Ubun
 
 ## Requirements
 
-- Ubuntu 20.04 operating system.
+- Ubuntu 22.04 operating system.
 - Internet connection for downloading packages and extensions.
 - Sufficient permissions (ideally, run as a user with `sudo` privileges).
 
@@ -50,9 +50,9 @@ chmod +x run_setup.sh
 ### 3. Run the Script
 
 Execute the script:
-
+>NOTE: Avoid running with sudo priveleges, as it can interfere with the setup process.
 ```bash
-./setup_environment.sh
+./run_setup.sh
 ```
 
 ### 4. Follow the Prompts
