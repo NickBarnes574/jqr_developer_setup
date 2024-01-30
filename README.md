@@ -1,4 +1,4 @@
-# CSD-T JQR Developer Environment Setup Script for Ubuntu 20.04
+# CSD-T JQR Developer Environment Setup Script for Ubuntu 22.04
 
 1. [Overview](#overview)
 2. [Features](#features)
@@ -18,7 +18,7 @@
 
 ## Overview
 
-This script is designed to automate the setup of a developer environment on Ubuntu 20.04. It installs essential development tools, software packages, and Visual Studio Code (VS Code) extensions necessary for working on the CSD-T JQR project. The script is ideal for developers who want a quick and efficient way to set up their working environment on a new Ubuntu installation.
+This script is designed to automate the setup of a developer environment on Ubuntu 22.04. It installs essential development tools, software packages, and Visual Studio Code (VS Code) extensions necessary for working on the CSD-T JQR project. The script is ideal for developers who want a quick and efficient way to set up their working environment on a new Ubuntu installation.
 
 ## Features
 
@@ -96,13 +96,13 @@ If you encounter errors:
 
 - Ensure you have internet connectivity.
 - Verify you have `sudo` privileges.
-- Check if Ubuntu 20.04 is up-to-date.
+- Check if Ubuntu 22.04 is up-to-date.
 
 For specific errors, refer to the console output. Most issues will be related to package availability or network problems.
 
 ## OPTIONAL: Version Checks
 If desired, you can run version checks separately.
-> **NOTE:** If you are running this script for the first time on a clean Ubuntu 20.04 install, all packages will display a `[FAIL] [NOT FOUND]` message
+> **NOTE:** If you are running this script for the first time on a clean Ubuntu 22.04 install, all packages will display a `[FAIL] [NOT FOUND]` message
 
 ```bash
 chmod +x run_version_check.sh
