@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-# run_tui.py
+# run_toolkit.py
 
 import curses
-from main_window import MainWindow
 from event_handler import EventHandler
 from config import configure_curses
 
