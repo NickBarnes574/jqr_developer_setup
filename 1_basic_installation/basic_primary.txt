@@ -1,0 +1,9 @@
+The following tools will be installed:
+
+Build System        C Formatting            Testing
+- Make              - Clang-Formatting      - CUnit
+- CMake             - Clang-Tidy
+                    
+Python              C Debugging             Version Control
+- Pylint            - Valgrind              - Git
+- Pip               - Address Sanitizer
