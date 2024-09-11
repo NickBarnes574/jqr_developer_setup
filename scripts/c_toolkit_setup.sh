@@ -82,6 +82,7 @@ The script will install the following programs:\n\n" "info"
     install_i3
     install_vscode
     install_git
+    remove_firefox_snap # remove the snap version of firefox
     install_google_chrome
 
     clear
@@ -249,6 +250,16 @@ install_vscode_extensions()
     else
         print_style "VS Code is not installed. Cannot install VS Code extensions!\n" "danger"
     fi
+}
+
+remove_firefox_snap()
+{
+    # Uninstall snap version (doesn't work with CAC credentials)
+    sudo snap remove firefox
+
+    # Remove leftover configuration files
+    sudo rm -rf ~/.mozilla/firefox
+    sudo rm -rf ~/.cache/mozilla/firefox
 }
 
 install_google_chrome()
