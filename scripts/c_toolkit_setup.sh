@@ -50,7 +50,8 @@ The script will install the following programs:\n\n" "info"
     12. Address Sanitizer...Memory error detector for C/C++
     13. cppcheck............Static analysis tool for C/C++
     14. VS Code:............Source-code editor made by Microsoft
-    15. Git:................Distributed version control system for developers\n"
+    15. Git:................Distributed version control system for developers
+    16. Google Chrome:......Official web browser from Google\n"
 
     while [ "$option" != "y" ] && [ "$option" != "n" ]
     do
@@ -81,6 +82,7 @@ The script will install the following programs:\n\n" "info"
     install_i3
     install_vscode
     install_git
+    install_google_chrome
 
     clear
 }
@@ -247,6 +249,20 @@ install_vscode_extensions()
     else
         print_style "VS Code is not installed. Cannot install VS Code extensions!\n" "danger"
     fi
+}
+
+install_google_chrome()
+{
+    # Download and import Google's signed key
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub > linux_signing_key.pub
+    sudo install -D -o root -g root -m 644 linux_signing_key.pub /etc/apt/keyrings/linux_signing_key.pub
+
+    # Add Google's Chrome repository and update
+    sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.pub] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt update
+
+    # Install Google Chrome
+    sudo apt install google-chrome-stable
 }
 
 install_package_if_not_present()
