@@ -84,6 +84,9 @@ The script will install the following programs:\n\n" "info"
     install_git
     install_google_chrome
 
+    # Copy documentation
+    copy_documents
+
     clear
 }
 
@@ -286,6 +289,17 @@ install_extension_if_not_present()
         print_style "installing VS Code extension: $description\n" "info"
         code --install-extension "$extension" 2>/dev/null
     fi
+}
+
+copy_documents()
+{
+    cp ./documents/CSD-T_C_coding_standard_2024.pdf ~/Documents/
+    cp ./documents/google_python_style_guide.pdf ~/Documents/
+    cp ./documents/clang-format ~/Documents/
+    cp ./documents/common_bsle_mistakes.pdf ~/Documents/
+    cp ./documents/managing_git_credentials.md ~/Documents/
+    cp ./documents/recommended_aliases.txt ~/Documents/
+    cp ./documents/git_cheatsheet.md ~/Documents/
 }
 
 main
