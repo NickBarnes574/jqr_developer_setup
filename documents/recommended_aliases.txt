@@ -1,0 +1,4 @@
+I recommend adding these aliases to your .bashrc file or .zshrc file:
+
+alias valrun="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes"
+alias helrun="vagrind --tool=helgrind"
