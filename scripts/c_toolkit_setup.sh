@@ -35,23 +35,44 @@ the CSD-T JQR project requirements on a Linux Ubuntu 22.04 system.
 
 The script will install the following programs:\n\n" "info"
     print_style "\
-       [NAME]               [DESCRIPTION]
-    1. build-essential:.....Essential tools and needed to build software
+    [DEVELOPMENT TOOLS]:\n" "success"
+    print_style "\
+    1. build-essential:.....Essential tools needed to build software
     2. make:................Used to build executable programs and libraries
     3. cmake:...............Used to manage the build process of software
-    4. curl:................Command-line tool used to transfer data
-    5. pip:.................Package installer for Python
-    6. pylint:..............Static code analyzer for Python 2 and 3
-    7. clang-14:............Compiler for C and C++ programming languages
-    8. clang-format:........Code Formatting tool for C/C++
-    9. clang-tidy:..........Static analyzer tool for C/C++
-    10. cunit:..............Unit testing framework for C
-    11. valgrind:...........Memory management and bug detector for C
-    12. Address Sanitizer...Memory error detector for C/C++
-    13. cppcheck............Static analysis tool for C/C++
-    14. VS Code:............Source-code editor made by Microsoft
-    15. Git:................Distributed version control system for developers
-    16. Google Chrome:......Official web browser from Google\n"
+    4. clang-14:............Compiler for C and C++ programming languages
+    5. clang-format:........Code formatting tool for C/C++
+    6. clang-tidy:..........Static analyzer tool for C/C++
+    7. Address Sanitizer:...Memory error detector for C/C++
+    8. cunit:...............Unit testing framework for C
+    9. valgrind:............Memory management and bug detector for C
+    10. cppcheck:...........Static analysis tool for C/C++\n\n"
+
+    print_style "\
+    [PROGRAMMING AND SCRIPTING TOOLS]:\n" "success"
+    print_style "\
+    11. pip:................Package installer for Python
+    12. pylint:.............Static code analyzer for Python 2 and 3
+    13. pycodestyle:........Python PEP-8 style convention checker\n\n"
+
+    print_style "\
+    [VERSION CONTROL]:\n" "success"
+    print_style "\
+    14. Git:................Distributed version control system for developers\n\n"
+
+    print_style "\
+    [DESKTOP APPLICATIONS]:\n" "success"
+    print_style "\
+    15. VS Code:............Source-code editor made by Microsoft
+    16. Google Chrome:......Official web browser from Google
+    17. Discord:............Chat app useful for communicating with mentors
+    18. Signal:.............Messaging app used for work-related communication\n\n"
+
+    print_style "\
+    [UTILITIES]:\n" "success"
+    print_style "\
+    19. curl:...............Command-line tool used to transfer data
+    20. peek:...............Animated GIF recorder used for documentation\n\n"
 
     while [ "$option" != "y" ] && [ "$option" != "n" ]
     do
@@ -74,6 +95,7 @@ The script will install the following programs:\n\n" "info"
     install_curl
     install_pip
     install_pylint
+    install_pycodestyle
     install_clang_suite
     install_cunit
     install_valgrind
@@ -83,6 +105,12 @@ The script will install the following programs:\n\n" "info"
     install_vscode
     install_git
     install_google_chrome
+    install_peek
+    install_discord
+    install_signal
+
+    # Update favorites bar
+    update_favorites
 
     # Copy documentation
     copy_documents
@@ -142,6 +170,15 @@ install_pip()
 install_pylint()
 {
     install_package_if_not_present "pylint" "Static code analyser for Python 2 and 3" "Pylint"
+}
+
+#---------------------------------------------------------------
+# Name:        | Pycodestyle
+# Description: | Python PEP-8 style convention checker
+#---------------------------------------------------------------
+install_pycodestyle()
+{
+    pip install pycodestyle
 }
 
 #---------------------------------------------------------------
@@ -249,6 +286,9 @@ install_vscode_extensions()
         # Markdown PDF
         install_extension_if_not_present "yzane.markdown-pdf" "Markdown PDF"
 
+        # PlatformIO IDE
+        install_extension_if_not_present "platformio.platformio-ide" "PlatformIO IDE"
+
     else
         print_style "VS Code is not installed. Cannot install VS Code extensions!\n" "danger"
     fi
@@ -267,6 +307,72 @@ install_google_chrome()
     # Install Google Chrome
     sudo apt install google-chrome-stable
 }
+
+install_peek()
+{
+    if ! command -v peek &> /dev/null; then
+        print_description "Snap" "Animated GIF recorder used for documentation"
+        sudo apt install peek
+    fi
+}
+
+install_discord()
+{
+    if ! command -v discord &> /dev/null; then
+        print_description "Discord" "Chat app useful for communicating with mentors"
+        sudo snap install discord
+    fi
+}
+
+install_signal()
+{
+    # NOTE: These instructions only work for 64-bit Debian-based
+    # Linux distributions such as Ubuntu, Mint etc.
+
+    # 1. Install our official public software signing key:
+    wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+    cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+
+    # 2. Add our repository to your list of repositories:
+    echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+    sudo tee /etc/apt/sources.list.d/signal-xenial.list
+
+    # 3. Update your package database and install Signal:
+    sudo apt update && sudo apt install signal-desktop
+}
+
+update_favorites()
+{
+    # Get the current favorites
+    current_favorites=$(gsettings get org.gnome.shell favorite-apps)
+
+    # Remove Firefox (if present)
+    updated_favorites=$(echo "$current_favorites" | sed "s/'firefox.desktop', //g" | sed "s/, 'firefox.desktop'//g" | sed "s/'firefox.desktop'//g")
+
+    # Add Google Chrome to favorites if not present
+    if [[ $updated_favorites != *"google-chrome.desktop"* ]]; then
+        updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'google-chrome.desktop']/g")
+    fi
+
+    # Add VS Code to favorites if not present
+    if [[ $updated_favorites != *"code_code.desktop"* ]]; then
+        updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'code_code.desktop']/g")
+    fi
+
+    # Add Discord to favorites if not present
+    if [[ $updated_favorites != *"discord_discord.desktop"* ]]; then
+        updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'discord_discord.desktop']/g")
+    fi
+
+    # Add Signal to favorites if not present
+    if [[ $updated_favorites != *"signal-desktop.desktop"* ]]; then
+        updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'signal-desktop.desktop']/g")
+    fi
+
+    # Apply the new favorites
+    gsettings set org.gnome.shell favorite-apps "$updated_favorites"
+}
+
 
 install_package_if_not_present()
 {

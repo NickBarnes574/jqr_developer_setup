@@ -30,7 +30,19 @@ check_package_version()
     local search_command="$5"
     local installed_version=""
     
-    if ! dpkg -s "${name}" >/dev/null 2>&1; then
+    # if ! dpkg -s "${name}" >/dev/null 2>&1; then
+    # if ! command -v "${name}" >/dev/null 2>&1; then
+    #     output+="$red[NOT FOUND]$reset\n"
+    #     return 1
+    # fi
+
+    # Check for existence using dpkg or command based on name
+    if [[ "$version_command" == apt-cache* ]]; then
+        if ! dpkg -s "${name}" >/dev/null 2>&1; then
+            output+="$red[NOT FOUND]$reset\n"
+            return 1
+        fi
+    elif ! command -v "${name}" >/dev/null 2>&1; then
         output+="$red[NOT FOUND]$reset\n"
         return 1
     fi
@@ -146,7 +158,7 @@ check_valgrind()
 
 check_address_sanitizer()
 {
-    check_package_version "libasan6" "dpkg -l libasan6" "${1:-"11.4.0"}" "ATLEAST" "(\d+\.\d+\.\d+)(?=-)"
+    check_package_version "libasan6" "apt-cache policy libasan6" "${1:-"11.4.0"}" "ATLEAST" "(?<=Installed: )\d+\.\d+\.\d+"
 }
 
 check_cppcheck()
@@ -169,9 +181,14 @@ check_pylint()
     check_package_version "pylint" "pylint --version" "${1:-"2.12.2"}" "ATLEAST" "(?<=pylint )\d+\.\d+(\.\d+)?"
 }
 
+check_pycodestyle()
+{
+    check_package_version "pycodestyle" "pycodestyle --version" "${1:-"2.12.1"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
+}
+
 check_pip()
 {
-    check_package_version "python3-pip" "pip --version" "${1:-"22.0.2"}" "ATLEAST" "(?<=pip )\d+\.\d+(\.\d+)?"
+    check_package_version "python3-pip" "apt-cache policy python3-pip" "${1:-"22.0.2"}" "ATLEAST" "(?<=Installed: )\d+\.\d+(\.\d+)?"
 }
 
 check_curl()
@@ -214,6 +231,21 @@ check_vscode()
     check_snap_version "code" "code --version" "${1:-"1.85.1"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
 }
 
+check_google_chrome()
+{
+    check_package_version "google-chrome" "google-chrome --version" "${1:-"130.0"}" "ATLEAST" "(?<=Google Chrome )\d+\.\d+"
+}
+
+check_discord()
+{
+    check_snap_version "discord" "snap info discord" "${1:-"0.0.75"}" "ATLEAST" "installed:\s*\K\d+\.\d+\.\d+"
+}
+
+check_signal_desktop()
+{
+    check_package_version "signal-desktop" "apt-cache policy signal-desktop" "${1:-"7.32.0"}" "ATLEAST" "(?<=Installed: )\d+\.\d+\.\d+"
+}
+
 check_git()
 {
     check_package_version "git" "git --version" "${1:-"2.34.1"}" "ATLEAST" "(?<=git version )\d+\.\d+\.\d+"
@@ -229,6 +261,7 @@ checks=(
     check_i3:i3
     check_python:python3
     check_pylint:pylint
+    check_pycodestyle:pycodestyle
     check_pip:python3-pip
     check_curl:curl
     check_clang:clang-12
@@ -238,5 +271,8 @@ checks=(
     check_libcunit1_doc:libcunit-doc
     check_libcunit1_dev:libcunit-dev
     check_vscode:code
+    check_discord:discord
+    check_signal_desktop:signal-desktop
+    check_google_chrome:google-chrome
     check_git:git
 )

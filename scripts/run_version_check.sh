@@ -10,6 +10,7 @@ extensions=(
     "tomoki1207.pdf:VS Code PDF"
     "ms-python.black-formatter:Black Formatter"
     "yzane.markdown-pdf:Markdown PDF"
+    "platformio.platformio-ide:PlatformIO IDE"
 )
 
 check_package()
