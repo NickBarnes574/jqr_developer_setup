@@ -311,7 +311,7 @@ install_google_chrome()
 install_peek()
 {
     if ! command -v peek &> /dev/null; then
-        print_description "Snap" "Animated GIF recorder used for documentation"
+        print_description "Peek" "Animated GIF recorder used for documentation"
         sudo apt install peek
     fi
 }
