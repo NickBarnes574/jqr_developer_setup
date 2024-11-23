@@ -183,7 +183,7 @@ check_pylint()
 
 check_pycodestyle()
 {
-    check_package_version "pycodestyle" "pycodestyle --version" "${1:-"2.12.1"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
+    check_package_version "pycodestyle" "pycodestyle --version" "${1:-"2.8.0"}" "ATLEAST" "\d+\.\d+(\.\d+)?"
 }
 
 check_pip()

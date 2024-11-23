@@ -178,7 +178,7 @@ install_pylint()
 #---------------------------------------------------------------
 install_pycodestyle()
 {
-    pip install pycodestyle
+    install_package_if_not_present "pycodestyle" "Python PEP-8 style convention checker" "Pycodestyle"
 }
 
 #---------------------------------------------------------------
@@ -367,6 +367,11 @@ update_favorites()
     # Add Signal to favorites if not present
     if [[ $updated_favorites != *"signal-desktop.desktop"* ]]; then
         updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'signal-desktop.desktop']/g")
+    fi
+
+    # Add Terminal to favorites if not present
+    if [[ $updated_favorites != *"org.gnome.Terminal.desktop"* ]]; then
+        updated_favorites=$(echo "$updated_favorites" | sed "s/]$/, 'org.gnome.Terminal.desktop']/g")
     fi
 
     # Apply the new favorites
