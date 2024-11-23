@@ -310,10 +310,7 @@ install_google_chrome()
 
 install_peek()
 {
-    if ! command -v peek &> /dev/null; then
-        print_description "Peek" "Animated GIF recorder used for documentation"
-        sudo apt install peek
-    fi
+    install_package_if_not_present "peek" "Animated GIF recorder used for documentation" "Peek"
 }
 
 install_discord()
