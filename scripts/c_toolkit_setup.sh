@@ -347,7 +347,7 @@ update_favorites()
     current_favorites=$(gsettings get org.gnome.shell favorite-apps)
 
     # Remove Firefox (if present)
-    updated_favorites=$(echo "$current_favorites" | sed "s/'firefox.desktop', //g" | sed "s/, 'firefox.desktop'//g" | sed "s/'firefox.desktop'//g")
+    updated_favorites=$(echo "$current_favorites" | sed "s/'firefox_firefox.desktop', //g" | sed "s/, 'firefox_firefox.desktop'//g" | sed "s/'firefox_firefox.desktop'//g")
 
     # Add Google Chrome to favorites if not present
     if [[ $updated_favorites != *"google-chrome.desktop"* ]]; then
